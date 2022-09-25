@@ -1,8 +1,10 @@
 import express, { response } from "express";
 import mysql from "mysql";
+import cors from "cors";
 
-// express server
 const app = express();
+app.use(cors());
+app.use(express.json());
 
 // connect to db
 const db = mysql.createConnection({
@@ -34,12 +36,12 @@ app.get("/books", (req, res) => {
 });
 
 // get one record
-app.get("/books", (req, res) => {
-  const q = "SELECT * FROM books WHERE is = (?) LIMIT 1";
+app.get("/books/:id", (req, res) => {
+  const bookId = req.params.id;
 
-  const id = req.body.id;
+  const q = "SELECT * FROM books WHERE id = (?) LIMIT 1";
 
-  db.query(q, [id], (err, data) => {
+  db.query(q, [bookId], (err, data) => {
     if (err) return res.send(err);
     return res.json({
       message: "success",
@@ -50,11 +52,14 @@ app.get("/books", (req, res) => {
 
 // insert into db
 app.post("/books", (req, res) => {
-  const q = "INSERT INTO books(`title`, `desc`, `price`, `cover`) VALUES (?)";
+  const q =
+    "INSERT INTO books(`title`, `description`, `price`, `cover`) VALUES (?)";
 
+  console.log(req.body);
+  console.log("==========================");
   const values = [
     req.body.title,
-    req.body.desc,
+    req.body.description,
     req.body.price,
     req.body.cover,
   ];
@@ -72,11 +77,11 @@ app.post("/books", (req, res) => {
 app.put("/books/:id", (req, res) => {
   const bookId = req.params.id;
   const q =
-    "UPDATE books SET `title`= ?, `desc`= ?, `price`= ?, `cover`= ? WHERE id = ?";
+    "UPDATE books SET `title`= ?, `description`= ?, `price`= ?, `cover`= ? WHERE id = ?";
 
   const values = [
     req.body.title,
-    req.body.desc,
+    req.body.description,
     req.body.price,
     req.body.cover,
   ];

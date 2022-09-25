@@ -1,2 +1,38 @@
+# Get all books
 ###
-GET "http://localhost:8080/books"
+GET http://localhost:8080/books HTTP/1.1
+
+
+# Get single record
+###
+GET http://localhost:8080/books/2 HTTP/1.1
+
+# add a book
+###
+POST http://localhost:8080/books HTTP/1.1
+content-type: application/json
+
+{
+    "title": "A Song of Ice and Fire",
+    "description": "Again a wonderful journey",
+    "price" : 223.56,
+    "cover" : "uploads/covers/song-of-ice-and-fire.jpg"
+}
+
+
+# update a book
+###
+PUT http://localhost:8080/books/2 HTTP/1.1
+content-type: application/json
+
+{
+    "title": "The Song of Ice and Fire",
+    "description": "Again a wonderful journey",
+    "price" : 223.56,
+    "cover" : "uploads/covers/song-of-ice-and-fire.jpg"
+}
+
+
+# delete a book
+###
+DELETE http://localhost:8080/books/3 HTTP/1.1
