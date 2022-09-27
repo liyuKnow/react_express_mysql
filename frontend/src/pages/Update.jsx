@@ -19,6 +19,7 @@ const Update = () => {
   const bookId = location.pathname.split("/")[2];
 
   const handleChange = (e) => {
+
     setBook((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -51,26 +52,26 @@ const Update = () => {
         <>
           <h1>Update the Book</h1>
           <input
-            placeholder={updatedBook ? updatedBook.title : ""}
+            defaultValue={updatedBook ? updatedBook.title : ""}
             type="text"
             name="title"
             onChange={handleChange}
           />
           <textarea
-            placeholder={updatedBook ? updatedBook.description : ""}
+            defaultValue={updatedBook ? updatedBook.description : ""}
             rows={5}
             type="text"
-            name="desc"
+            name="description"
             onChange={handleChange}
           />
           <input
-            placeholder={updatedBook ? updatedBook.price : ""}
+            defaultValue={updatedBook ? updatedBook.price : ""}
             type="number"
             name="price"
             onChange={handleChange}
           />
           <input
-            placeholder={updatedBook ? updatedBook.cover : ""}
+            defaultValue={updatedBook ? updatedBook.cover : ""}
             type="text"
             name="cover"
             onChange={handleChange}
