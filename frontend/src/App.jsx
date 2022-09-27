@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import './style.scss'
 import Books from './pages/Books'
 import New from './pages/New'
 import Update from './pages/Update'
-import './App.css';
 
 function App() {
   return (
-    <div>
+    <div className='app'>
       <Router>
         <Routes>
           <Route path='/' element={<Books /> } />
