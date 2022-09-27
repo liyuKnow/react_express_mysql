@@ -11,8 +11,6 @@ const Books = () => {
       try {
         const res = await axios.get('http://localhost:8080/books');
         setBooks(res.data.data);
-        console.log(res.data.data);
-        console.log("what ?");
       } catch (error) {
         console.log(error)
       }

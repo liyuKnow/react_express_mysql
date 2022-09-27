@@ -55,8 +55,6 @@ app.post("/books", (req, res) => {
   const q =
     "INSERT INTO books(`title`, `description`, `price`, `cover`) VALUES (?)";
 
-  console.log(req.body);
-  console.log("==========================");
   const values = [
     req.body.title,
     req.body.description,
